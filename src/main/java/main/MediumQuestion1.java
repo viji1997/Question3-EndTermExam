@@ -16,6 +16,10 @@ Customer(String name, String address, Integer age, String mobile) {
 	this.mobileNumber = mobile;
 
 }
+public void displayCustomer(Double amt,Double amtdis,String type) {
+	System.out.println("Your bill amount is Rs. "+amt+".Congrats! As you are a "+type+", you are eligible for a discount!\r\n" + 
+			"You have to pay Rs "+amtdis);
+}
 
 public String toString() {
 	return "Name: " + this.name+"\n"+"Mobile: "+this.mobileNumber+"\n"+"Age: " + this.age+"\n"+"Address: "+ this.address;
@@ -31,8 +35,8 @@ class SeniorCitizenCustomer extends Customer {
 	}
 	
 	Double getBillAmount(Double amount) {
-		Double bill =null; //edit as per the question
-		//Write your code here of required
+		Double bill =(0.88*amount); 
+		
 		return bill;
 	}
 
@@ -43,8 +47,9 @@ class PrivilegeCustomer extends Customer {
 			super(name, address, age, mobile);
 		}
 		Double getBillAmount(Double amount) {
-			Double bill = null; //edit as per the Question 
-			//write your code here if required.
+			Double bill = (0.7*amount);
+			
+			
 			return bill;
 		}
 }
@@ -65,17 +70,22 @@ public class MediumQuestion1 {
 				takeInput();
 				
 				Customer cust = new PrivilegeCustomer(name, address, age, phn);
-				//Double billAmt = cust.getBillAmount(purchasedAmt);
+				
+				Double billAmt = cust.getBillAmount(purchasedAmt);
 				System.out.println("Bill details");
-				System.out.println(cust.toString()+"\n"+cust.getBillAmount(purchasedAmt));
+				System.out.println(cust.toString());
+				cust.displayCustomer(purchasedAmt, billAmt,"Privileged custome");
 				break;
 			case 2:
 				takeInput();
 				Customer cust1 = new SeniorCitizenCustomer(name, address, age, phn);
-				
+				Double billAmt1 = cust1.getBillAmount(purchasedAmt);
+
 				System.out.println("Bill details");
 				
-				System.out.println(cust1.toString()+"\n"+cust1.getBillAmount(purchasedAmt));
+				System.out.println(cust1.toString());
+				cust1.displayCustomer(purchasedAmt, billAmt1,"citizen customer");
+
 				break;
 				
 			default:
